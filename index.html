@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Comprobación de Vuelo - MSFS 2024</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #141b2d;
+            --border-color: #1f2a44;
+            --accent-blue: #00d2ff;
+            --accent-green: #00ff66;
+            --text-main: #e2e8f0;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .checklist-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-blue);
+            margin: 0;
+        }
+
+        .reset-btn {
+            background-color: transparent;
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .reset-btn:hover {
+            background-color: var(--accent-blue);
+            color: var(--bg-color);
+        }
+
+        /* TITULOS DE SECCION (Sin checkbox) */
+        .section-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-blue);
+            background-color: rgba(0, 210, 255, 0.05);
+            padding: 8px 12px;
+            border-left: 3px solid var(--accent-blue);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* ELEMENTOS CON CHECKBOX */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.15s ease;
+        }
+
+        .checklist-item:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--text-muted);
+            border-radius: 3px;
+            margin-right: 14px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checklist-item input[type="checkbox"]:checked {
+            border-color: var(--accent-green);
+            background-color: rgba(0, 255, 102, 0.1);
+        }
+
+        .checklist-item input[type="checkbox"]:checked::after {
+            content: "✓";
+            color: var(--accent-green);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .checklist-item label {
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            flex-grow: 1;
+        }
+
+        .checklist-item input[type="checkbox"]:checked + label {
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checklist-container">
+        <div class="header">
+            <h1>Checklist a320 NEO</h1>
+            <button class="reset-btn" onclick="resetChecklist()">REINICIAR</button>
+        </div>
+
+        <!-- TITULO DE SECCION 1 (Sin checkbox) -->
+        <div class="section-title">1. START & PRE-TAXI</div>
+
+        <!-- PASOS DE LA SECCION 1 -->
+        <div class="checklist-item">
+            <input type="checkbox" id="step-1">
+            <label for="step-1">BAT1/BAT2 - ON</label>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="step-2">
+            <label for="step-2">External Power - ON</label>
+        </div>
+
+        <div class="checklist-item">
+            <input type="checkbox" id="step-3">
+            <label for="step-3">NAV LIGHTS - POS 1</label>
+        </div>
+
+		<div class="checklist-item">
+            <input type="checkbox" id="step-4">
+            <label for="step-4">Overhead panel items - ON</label>
+        </div>
+
+		<div class="checklist-item">
+            <input type="checkbox" id="step-5">
+            <label for="step-5">EMERGENCY EXIT LIGHTS - ARM</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-6">
+            <label for="step-6">NO SMOKING - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-7">
+            <label for="step-7">SEATBELTS - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-8">
+            <label for="step-8">NAV1 / NAV2 / NAV3 - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-9">
+            <label for="step-9">QNH - SET</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-10">
+            <label for="step-10">FD - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-11">
+            <label for="step-11">Request ground services</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-12">
+            <label for="step-12">Fill the fuel tank</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-13">
+            <label for="step-13">Request ATC clearance for taxi</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-14">
+            <label for="step-14">MCDU</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-15">
+            <label for="step-15">Cruisse altitude - SET</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-16">
+            <label for="step-16">APU master switch - ON + 3 missisipis</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-17">
+            <label for="step-17">APU START -ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-18">
+            <label for="step-18">APU bleed - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-19">
+            <label for="step-19">BEACON Lights - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-20">
+            <label for="step-20">Engine mode selector - START</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-21">
+            <label for="step-21">ENG1 - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-22">
+            <label for="step-22">ENG2 - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-23">
+            <label for="step-23">AUTOBRAKE - MAX</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-24">
+            <label for="step-24">TO Config - CALCULATED</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-25">
+            <label for="step-25">FLAPS - SET</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-26">
+            <label for="step-26">SPOILERS - ARM</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-27">
+            <label for="step-27">TCAS - TA/RA</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-28">
+            <label for="step-28">TCAS MODE - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-29">
+            <label for="step-29">WXR/PWS - 1</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-30">
+            <label for="step-30">SELECTOR WX L&R - ALL WX</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-31">
+            <label for="step-31">Retire ground services</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-32">
+            <label for="step-32">APU master switch - OFF</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-33">
+            <label for="step-33">APU bleed - OFF</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-34">
+            <label for="step-34">Engine mode selector - NORM</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-35">
+            <label for="step-35">BEACON Lights - OFF</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-36">
+            <label for="step-36">Request pushback</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-37">
+            <label for="step-37">Strobe Lights - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-38">
+            <label for="step-38">Wing Lights - ON (If night)</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-39">
+            <label for="step-39">Taxi Lights - ON</label>
+        </div>
+		
+        <!-- TITULO DE SECCION 2 -->
+        <div class="section-title">2. TAXI</div>
+
+        <!-- PASOS DE LA SECCION 2 -->
+        <div class="checklist-item">
+            <input type="checkbox" id="step-40">
+            <label for="step-40">Taxi to runway</label>
+        </div>
+
+        <!-- ======================================================= -->
+		
+		<!-- TITULO DE SECCION 3 -->
+        <div class="section-title">3. PRE TAKE OFF</div>
+
+        <!-- PASOS DE LA SECCION 3 -->
+        <div class="checklist-item">
+            <input type="checkbox" id="step-41">
+            <label for="step-41">Request ATC take off clearance</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-42">
+            <label for="step-42">TO Lights - ON</label>
+        </div>
+
+        <!-- ======================================================= -->
+		
+		<!-- TITULO DE SECCION 4 -->
+        <div class="section-title">4. POST TAKE OFF</div>
+
+        <!-- PASOS DE LA SECCION 4 -->
+        <div class="checklist-item">
+            <input type="checkbox" id="step-43">
+            <label for="step-43">Gear - UP</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-44">
+            <label for="step-44">AP - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-45">
+            <label for="step-45">VS - SET</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-46">
+            <label for="step-46">FLAPS - 0ª</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-47">
+            <label for="step-47">Cruisse speed - SET</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-48">
+            <label for="step-48">ATHR - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-49">
+            <label for="step-49">TO Lights - OFF</label>
+        </div>
+
+        <!-- ======================================================= -->
+		
+		<!-- TITULO DE SECCION 5 -->
+        <div class="section-title">5. NAVIGATION</div>
+
+        <!-- PASOS DE LA SECCION 5 -->
+        <div class="checklist-item">
+            <input type="checkbox" id="step-50">
+            <label for="step-50">Fasten seatbelts - OFF</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-51">
+            <label for="step-51">Speed MACH - SET</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-52">
+            <label for="step-52">Continue navigation</label>
+        </div>
+
+        <!-- ======================================================= -->
+		
+		<!-- TITULO DE SECCION 6 -->
+        <div class="section-title">6. APPROACH</div>
+
+        <!-- PASOS DE LA SECCION 6 -->
+        <div class="checklist-item">
+            <input type="checkbox" id="step-53">
+            <label for="step-53">RAD NAV - CHECK</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-54">
+            <label for="step-54">Approach config - COMPLETED</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-55">
+            <label for="step-55">Fasten seatbelts - ON (at FL150 above landing)</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-56">
+            <label for="step-56">Reduce selected speed</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-57">
+            <label for="step-57">FLAPS - EXTENDED</label>
+        </div>
+
+        <!-- ======================================================= -->
+		
+		<!-- TITULO DE SECCION 7 -->
+        <div class="section-title">7. FINAL APPROACH</div>
+
+        <!-- PASOS DE LA SECCION 7 -->
+        <div class="checklist-item">
+            <input type="checkbox" id="step-58">
+            <label for="step-58">GEAR - DOWN</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-59">
+            <label for="step-59">Landing Lights - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-60">
+            <label for="step-60">Landing speed - CHECK (IAS 150 - 130 kts)</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-61">
+            <label for="step-61">SPOILERS ARM - CHECK</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-62">
+            <label for="step-62">FLAPS 40º - CHECK</label>
+        </div>
+
+        <!-- ======================================================= -->
+		
+		<!-- TITULO DE SECCION 8 -->
+        <div class="section-title">8. TAXI TO GATE</div>
+
+        <!-- PASOS DE LA SECCION 8 -->
+        <div class="checklist-item">
+            <input type="checkbox" id="step-63">
+            <label for="step-63">Contact ground</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-64">
+            <label for="step-64">Landing Lights - OFF</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-65">
+            <label for="step-65">Taxi Lights - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-66">
+            <label for="step-66">FLAPS - 0ª</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-67">
+            <label for="step-67">SPOILERS - 0%</label>
+        </div>
+
+        <!-- ======================================================= -->
+		
+		<!-- TITULO DE SECCION 9 -->
+        <div class="section-title">9. SHUTDOWN</div>
+
+        <!-- PASOS DE LA SECCION 9 -->
+        <div class="checklist-item">
+            <input type="checkbox" id="step-68">
+            <label for="step-68">Taxi Lights - OFF</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-69">
+            <label for="step-69">GPU - CONECTED</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-70">
+            <label for="step-70">External power - ON</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-71">
+            <label for="step-71">Fasten seatbelts - OFF</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-72">
+            <label for="step-72">ENG1 / ENG2 - OFF</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-73">
+            <label for="step-73">Cruisse altitude - 00100ft</label>
+        </div>
+
+        <!-- ======================================================= -->
+		
+		<!-- TITULO DE SECCION 10 -->
+        <div class="section-title">10. FULL SHUTDOWN (IF NECESSARY)</div>
+
+        <!-- PASOS DE LA SECCION 10 -->
+        <div class="checklist-item">
+            <input type="checkbox" id="step-74">
+            <label for="step-74">External power - OFF</label>
+        </div>
+		
+		<div class="checklist-item">
+            <input type="checkbox" id="step-75">
+            <label for="step-75">BAT1 / BAT2 - OFF</label>
+        </div>
+
+        <!-- ======================================================= -->
+    </div>
+
+    <script>
+        function resetChecklist() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = false);
+        }
+    </script>
+</body>
+</html>
