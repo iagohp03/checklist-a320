@@ -176,7 +176,8 @@
             <select id="aircraftSelect" class="aircraft-selector" onchange="changeAircraft()">
                 <option value="a320">Airbus A320 NEO</option>
                 <option value="a330">Airbus A330-200/300</option>
-                <option value="c172">Cessna 172 Skyhawk</option>
+                <option value="b737">Boeing 737 MAX 8</option>
+				<option value="c172">Cessna 172 Skyhawk</option>
             </select>
         </div>
 
@@ -460,7 +461,154 @@
                     }
                 ]
             },
-            c172: {
+            b737: {
+                title: "Checklist Boeing 737 MAX",
+                sections: [
+                    {
+                        title: "1. START & PRE-TAXI",
+                        items: [
+                            "Battery - ON",
+                            "Emergency Lights - ARM",
+                            "Ground power - ACT",
+                            "IRS - NAV",
+							"Fasten seatbelts - ON",
+							"No smoking - ON",
+							"Request ground services",
+							"Request ATC clearance for taxi",
+							"-----MCDU-----",
+							"Copy GPS L",
+							"SET IRS POS",
+							"Complete route",
+							"-----END OF MCDU-----",
+							"Fill the fuel tank",
+							"Set TRIM",
+							"F/D - ON",
+							"Cruise speed - SET",
+							"Cruise altitude - SET",
+							"Autobrake - RTO",
+							"Fuel pumps - ON",
+							"APU Start + 3 Missisipis",
+							"Preassure - SET",
+							"ELEC2 & ELEC1 - ON",
+							"Window heat - ON",
+							"Probe heat - ON",
+							"APU GEN",
+							"Ground power - OFF",
+							"QNH - SET",
+							"L PACK & R PACK - AUTO",
+							"Isolation valve - AUTO",
+							"APU Bleed - ON",
+							"Strobe Lights - ON",
+							"Anti collision Lights - ON",
+							"L PACK & R PACK - OFF",
+							"ENG 2 START - GRD",
+							"ENG 1 START - GRD",
+							"FLAPS - SET",
+							"ENG 2 START - CONT",
+							"ENG 1 START - CONT",
+							"GEN 1 & GEN 2 - ACT",
+							"APU Switch - OFF",
+							"L PACK & R PACK - AUTO",
+							"APU Bleed - OFF",
+							"YAW DAMPER - ON",
+							"BEACON Lights - OFF",
+							"Retire ground services",
+                            "Request pushback",
+                            "Strobe Lights - ON",
+                            "Wing Lights - ON (If night)",
+							"Auto Throtle - ARM",
+                            "Taxi Lights - ON"
+                        ]
+                    },
+                    {
+                        title: "2. TAXI",
+                        items: [
+                            "Taxi to runway"
+                        ]
+                    },
+					{
+                        title: "3. PRE-TAKEOFF",
+                        items: [
+                            "Request ATC take off clearance",
+                            "TO Lights - ON"
+                        ]
+                    },
+					{
+                        title: "4. POST TAKE-OFF",
+                        items: [
+                            "Gear - UP",
+                            "AP - ON",
+                            "VS - SET",
+                            "FLAPS - 0º",
+                            "Cruise speed - SET",
+                            "ATHR - ON",
+                            "TO Lights - OFF"
+                        ]
+                    },
+					{
+                        title: "5. NAVIGATION",
+                        items: [
+                            "Fasten seatbelts - OFF",
+                            "Speed MACH - SET",
+                            "Continue navigation"
+                        ]
+                    },
+					{
+                        title: "6. APPROACH",
+                        items: [
+                            "ILS CONFIG - CHECK",
+                            "Fasten seatbelts - ON (at FL150 above landing)",
+                            "Reduce selected speed",
+                            "FLAPS - POSITION 4"
+                        ]
+                    },
+					{
+                        title: "7. FINAL APPROACH",
+                        items: [
+							"COURSE - CHEK",
+							"APPR - ON",
+							"FLAPS - POSITION 5",
+                            "GEAR - DOWN",
+                            "Landing Lights - ON",
+							"FLAPS - FULL",
+                            "Landing speed - CHECK (IAS 150 - 130 kts)",
+                            "SPOILERS ARM - CHECK",
+                            "FLAPS FULL - CHECK"
+                        ]
+                    },
+                    {
+                        title: "8. TAXI TO GATE",
+                        items: [
+                            "Contact ground",
+                            "Landing Lights - OFF",
+                            "Taxi Lights - ON",
+                            "FLAPS - 0º",
+                            "SPOILERS - 0%"
+                        ]
+                    },
+                    {
+                        title: "9. SHUTDOWN",
+                        items: [
+                            "Taxi Lights - OFF",
+                            "GPU - CONECTED",
+                            "External power - ON",
+                            "Fasten seatbelts - OFF",
+                            "ENG1 / ENG2 - OFF",
+							"Strobe Lights - OFF",
+							"Wing Lights - OFF (If necessary)",
+                            "Selected altitude - 00000ft"
+                        ]
+                    },
+                    {
+                        title: "10. FULL SHUTDOWN (IF NECESSARY)",
+                        items: [
+                            "External power - OFF",
+                            "BAT1 / BAT2 - OFF"
+                        ]
+                    }
+                ]
+            },
+			c172: {
                 title: "Checklist Cessna 172",
                 sections: [
                     {
