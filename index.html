@@ -37,11 +37,17 @@
 
         .header {
             display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+
+        .header-top {
+            display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--accent-blue);
-            padding-bottom: 12px;
-            margin-bottom: 24px;
         }
 
         .header h1 {
@@ -50,6 +56,24 @@
             letter-spacing: 2px;
             color: var(--accent-blue);
             margin: 0;
+        }
+
+        .aircraft-selector {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            border: 1px solid var(--accent-blue);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            outline: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .aircraft-selector option {
+            background-color: var(--card-bg);
+            color: var(--text-main);
         }
 
         .reset-btn {
@@ -70,7 +94,7 @@
             color: var(--bg-color);
         }
 
-        /* TITULOS DE SECCION (Sin checkbox) */
+        /* TITULOS DE SECCION */
         .section-title {
             font-size: 0.95rem;
             font-weight: 700;
@@ -144,449 +168,499 @@
 
     <div class="checklist-container">
         <div class="header">
-            <h1>Checklist a320 NEO</h1>
-            <button class="reset-btn" onclick="resetChecklist()">REINICIAR</button>
+            <div class="header-top">
+                <h1 id="checklist-title">Checklist Vuelo</h1>
+                <button class="reset-btn" onclick="resetChecklist()">REINICIAR</button>
+            </div>
+            <!-- MENÚ DE SELECCIÓN DE AVIÓN -->
+            <select id="aircraftSelect" class="aircraft-selector" onchange="changeAircraft()">
+                <option value="a320">Airbus A320 NEO</option>
+                <option value="a330">Airbus A330-200/300</option>
+                <option value="c172">Cessna 172 Skyhawk</option>
+            </select>
         </div>
 
-        <!-- TITULO DE SECCION 1 (Sin checkbox) -->
-        <div class="section-title">1. START & PRE-TAXI</div>
-
-        <!-- PASOS DE LA SECCION 1 -->
-        <div class="checklist-item">
-            <input type="checkbox" id="step-1">
-            <label for="step-1">BAT1/BAT2 - ON</label>
-        </div>
-
-        <div class="checklist-item">
-            <input type="checkbox" id="step-2">
-            <label for="step-2">External Power - ON</label>
-        </div>
-
-        <div class="checklist-item">
-            <input type="checkbox" id="step-3">
-            <label for="step-3">NAV LIGHTS - POS 1</label>
-        </div>
-
-		<div class="checklist-item">
-            <input type="checkbox" id="step-4">
-            <label for="step-4">Overhead panel items - ON</label>
-        </div>
-
-		<div class="checklist-item">
-            <input type="checkbox" id="step-5">
-            <label for="step-5">EMERGENCY EXIT LIGHTS - ARM</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-6">
-            <label for="step-6">NO SMOKING - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-7">
-            <label for="step-7">SEATBELTS - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-8">
-            <label for="step-8">NAV1 / NAV2 / NAV3 - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-9">
-            <label for="step-9">QNH - SET</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-10">
-            <label for="step-10">FD - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-11">
-            <label for="step-11">Request ground services</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-12">
-            <label for="step-12">Fill the fuel tank</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-13">
-            <label for="step-13">Request ATC clearance for taxi</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-14">
-            <label for="step-14">MCDU</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-15">
-            <label for="step-15">Cruisse altitude - SET</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-16">
-            <label for="step-16">APU master switch - ON + 3 missisipis</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-17">
-            <label for="step-17">APU START -ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-18">
-            <label for="step-18">APU bleed - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-19">
-            <label for="step-19">BEACON Lights - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-20">
-            <label for="step-20">Engine mode selector - START</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-21">
-            <label for="step-21">ENG1 - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-22">
-            <label for="step-22">ENG2 - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-23">
-            <label for="step-23">AUTOBRAKE - MAX</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-24">
-            <label for="step-24">TO Config - CALCULATED</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-25">
-            <label for="step-25">FLAPS - SET</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-26">
-            <label for="step-26">SPOILERS - ARM</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-27">
-            <label for="step-27">TCAS - TA/RA</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-28">
-            <label for="step-28">TCAS MODE - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-29">
-            <label for="step-29">WXR/PWS - 1</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-30">
-            <label for="step-30">SELECTOR WX L&R - ALL WX</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-31">
-            <label for="step-31">Retire ground services</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-32">
-            <label for="step-32">APU master switch - OFF</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-33">
-            <label for="step-33">APU bleed - OFF</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-34">
-            <label for="step-34">Engine mode selector - NORM</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-35">
-            <label for="step-35">BEACON Lights - OFF</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-36">
-            <label for="step-36">Request pushback</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-37">
-            <label for="step-37">Strobe Lights - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-38">
-            <label for="step-38">Wing Lights - ON (If night)</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-39">
-            <label for="step-39">Taxi Lights - ON</label>
-        </div>
-		
-        <!-- TITULO DE SECCION 2 -->
-        <div class="section-title">2. TAXI</div>
-
-        <!-- PASOS DE LA SECCION 2 -->
-        <div class="checklist-item">
-            <input type="checkbox" id="step-40">
-            <label for="step-40">Taxi to runway</label>
-        </div>
-
-        <!-- ======================================================= -->
-		
-		<!-- TITULO DE SECCION 3 -->
-        <div class="section-title">3. PRE TAKE OFF</div>
-
-        <!-- PASOS DE LA SECCION 3 -->
-        <div class="checklist-item">
-            <input type="checkbox" id="step-41">
-            <label for="step-41">Request ATC take off clearance</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-42">
-            <label for="step-42">TO Lights - ON</label>
-        </div>
-
-        <!-- ======================================================= -->
-		
-		<!-- TITULO DE SECCION 4 -->
-        <div class="section-title">4. POST TAKE OFF</div>
-
-        <!-- PASOS DE LA SECCION 4 -->
-        <div class="checklist-item">
-            <input type="checkbox" id="step-43">
-            <label for="step-43">Gear - UP</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-44">
-            <label for="step-44">AP - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-45">
-            <label for="step-45">VS - SET</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-46">
-            <label for="step-46">FLAPS - 0ª</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-47">
-            <label for="step-47">Cruisse speed - SET</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-48">
-            <label for="step-48">ATHR - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-49">
-            <label for="step-49">TO Lights - OFF</label>
-        </div>
-
-        <!-- ======================================================= -->
-		
-		<!-- TITULO DE SECCION 5 -->
-        <div class="section-title">5. NAVIGATION</div>
-
-        <!-- PASOS DE LA SECCION 5 -->
-        <div class="checklist-item">
-            <input type="checkbox" id="step-50">
-            <label for="step-50">Fasten seatbelts - OFF</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-51">
-            <label for="step-51">Speed MACH - SET</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-52">
-            <label for="step-52">Continue navigation</label>
-        </div>
-
-        <!-- ======================================================= -->
-		
-		<!-- TITULO DE SECCION 6 -->
-        <div class="section-title">6. APPROACH</div>
-
-        <!-- PASOS DE LA SECCION 6 -->
-        <div class="checklist-item">
-            <input type="checkbox" id="step-53">
-            <label for="step-53">RAD NAV - CHECK</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-54">
-            <label for="step-54">Approach config - COMPLETED</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-55">
-            <label for="step-55">Fasten seatbelts - ON (at FL150 above landing)</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-56">
-            <label for="step-56">Reduce selected speed</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-57">
-            <label for="step-57">FLAPS - EXTENDED</label>
-        </div>
-
-        <!-- ======================================================= -->
-		
-		<!-- TITULO DE SECCION 7 -->
-        <div class="section-title">7. FINAL APPROACH</div>
-
-        <!-- PASOS DE LA SECCION 7 -->
-        <div class="checklist-item">
-            <input type="checkbox" id="step-58">
-            <label for="step-58">GEAR - DOWN</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-59">
-            <label for="step-59">Landing Lights - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-60">
-            <label for="step-60">Landing speed - CHECK (IAS 150 - 130 kts)</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-61">
-            <label for="step-61">SPOILERS ARM - CHECK</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-62">
-            <label for="step-62">FLAPS 40º - CHECK</label>
-        </div>
-
-        <!-- ======================================================= -->
-		
-		<!-- TITULO DE SECCION 8 -->
-        <div class="section-title">8. TAXI TO GATE</div>
-
-        <!-- PASOS DE LA SECCION 8 -->
-        <div class="checklist-item">
-            <input type="checkbox" id="step-63">
-            <label for="step-63">Contact ground</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-64">
-            <label for="step-64">Landing Lights - OFF</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-65">
-            <label for="step-65">Taxi Lights - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-66">
-            <label for="step-66">FLAPS - 0ª</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-67">
-            <label for="step-67">SPOILERS - 0%</label>
-        </div>
-
-        <!-- ======================================================= -->
-		
-		<!-- TITULO DE SECCION 9 -->
-        <div class="section-title">9. SHUTDOWN</div>
-
-        <!-- PASOS DE LA SECCION 9 -->
-        <div class="checklist-item">
-            <input type="checkbox" id="step-68">
-            <label for="step-68">Taxi Lights - OFF</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-69">
-            <label for="step-69">GPU - CONECTED</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-70">
-            <label for="step-70">External power - ON</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-71">
-            <label for="step-71">Fasten seatbelts - OFF</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-72">
-            <label for="step-72">ENG1 / ENG2 - OFF</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-73">
-            <label for="step-73">Selected altitude - 00100ft</label>
-        </div>
-
-        <!-- ======================================================= -->
-		
-		<!-- TITULO DE SECCION 10 -->
-        <div class="section-title">10. FULL SHUTDOWN (IF NECESSARY)</div>
-
-        <!-- PASOS DE LA SECCION 10 -->
-        <div class="checklist-item">
-            <input type="checkbox" id="step-74">
-            <label for="step-74">External power - OFF</label>
-        </div>
-		
-		<div class="checklist-item">
-            <input type="checkbox" id="step-75">
-            <label for="step-75">BAT1 / BAT2 - OFF</label>
-        </div>
-
-        <!-- ======================================================= -->
+        <!-- CONTENEDOR DINÁMICO DE SECCIONES Y CHECKBOXES -->
+        <div id="checklist-content"></div>
     </div>
 
     <script>
+        // BASE DE DATOS DE CHECKLISTS POR AVIÓN
+        const checklistsData = {
+            a320: {
+                title: "Checklist A320 NEO",
+                sections: [
+                    {
+                        title: "1. START & PRE-TAXI",
+                        items: [
+                            "BAT1/BAT2 - ON",
+                            "External Power - ON",
+                            "NAV LIGHTS - POS 1",
+                            "Overhead panel items - ON",
+                            "EMERGENCY EXIT LIGHTS - ARM",
+                            "NO SMOKING - ON",
+                            "SEATBELTS - ON",
+                            "NAV1 / NAV2 / NAV3 - ON",
+                            "QNH - SET",
+                            "FD - ON",
+                            "Request ground services",
+                            "Fill the fuel tank",
+                            "Request ATC clearance for taxi",
+                            "MCDU",
+                            "Cruise altitude - SET",
+                            "APU master switch - ON + 3 missisipis",
+                            "APU START -ON",
+                            "APU bleed - ON",
+                            "BEACON Lights - ON",
+                            "Engine mode selector - START",
+                            "ENG1 - ON",
+                            "ENG2 - ON",
+                            "AUTOBRAKE - MAX",
+                            "TO Config - CALCULATED",
+                            "FLAPS - SET",
+                            "SPOILERS - ARM",
+                            "TCAS - TA/RA",
+                            "TCAS MODE - ON",
+                            "WXR/PWS - 1",
+                            "SELECTOR WX L&R - ALL WX",
+                            "Retire ground services",
+                            "APU master switch - OFF",
+                            "APU bleed - OFF",
+                            "Engine mode selector - NORM",
+                            "BEACON Lights - OFF",
+                            "Request pushback",
+                            "Strobe Lights - ON",
+                            "Wing Lights - ON (If night)",
+                            "Taxi Lights - ON"
+                        ]
+                    },
+                    {
+                        title: "2. TAXI",
+                        items: [
+                            "Taxi to runway"
+                        ]
+                    },
+                    {
+                        title: "3. PRE TAKE OFF",
+                        items: [
+                            "Request ATC take off clearance",
+                            "TO Lights - ON"
+                        ]
+                    },
+                    {
+                        title: "4. POST TAKE OFF",
+                        items: [
+                            "Gear - UP",
+                            "AP - ON",
+                            "VS - SET",
+                            "FLAPS - 0º",
+                            "Cruise speed - SET",
+                            "ATHR - ON",
+                            "TO Lights - OFF"
+                        ]
+                    },
+                    {
+                        title: "5. NAVIGATION",
+                        items: [
+                            "Fasten seatbelts - OFF",
+                            "Speed MACH - SET",
+                            "Continue navigation"
+                        ]
+                    },
+                    {
+                        title: "6. APPROACH",
+                        items: [
+                            "RAD NAV - CHECK",
+                            "Approach config - COMPLETED",
+                            "Fasten seatbelts - ON (at FL150 above landing)",
+                            "Reduce selected speed",
+                            "FLAPS - EXTENDED"
+                        ]
+                    },
+                    {
+                        title: "7. FINAL APPROACH",
+                        items: [
+                            "GEAR - DOWN",
+                            "Landing Lights - ON",
+                            "Landing speed - CHECK (IAS 150 - 130 kts)",
+                            "SPOILERS ARM - CHECK",
+                            "FLAPS 40º - CHECK"
+                        ]
+                    },
+                    {
+                        title: "8. TAXI TO GATE",
+                        items: [
+                            "Contact ground",
+                            "Landing Lights - OFF",
+                            "Taxi Lights - ON",
+                            "FLAPS - 0º",
+                            "SPOILERS - 0%"
+                        ]
+                    },
+                    {
+                        title: "9. SHUTDOWN",
+                        items: [
+                            "Taxi Lights - OFF",
+                            "GPU - CONECTED",
+                            "External power - ON",
+                            "Fasten seatbelts - OFF",
+                            "ENG1 / ENG2 - OFF",
+							"Strobe Lights - OFF",
+							"Wing Lights - OFF (If necessary)",
+                            "Selected altitude - 00100ft"
+                        ]
+                    },
+                    {
+                        title: "10. FULL SHUTDOWN (IF NECESSARY)",
+                        items: [
+                            "External power - OFF",
+                            "BAT1 / BAT2 - OFF"
+                        ]
+                    }
+                ]
+            },
+            a330: {
+                title: "Checklist A330-200/300",
+                sections: [
+                    {
+                        title: "1. START & PRE-TAXI",
+                        items: [
+                            "BAT1/BAT2 - ON",
+                            "External Power - ON",
+                            "NAV LIGHTS - POS 1",
+                            "Overhead panel items - ON",
+                            "EMERGENCY EXIT LIGHTS - ARM",
+                            "NO SMOKING - ON",
+                            "SEATBELTS - ON",
+                            "NAV1 / NAV2 / NAV3 - ON",
+                            "QNH - SET",
+                            "FD - ON",
+                            "Request ground services",
+                            "Fill the fuel tank",
+                            "Request ATC clearance for taxi",
+                            "MCDU",
+                            "Cruise altitude - SET",
+                            "APU master switch - ON + 3 missisipis",
+                            "APU START -ON",
+                            "APU bleed - ON",
+                            "BEACON Lights - ON",
+                            "Engine mode selector - START",
+                            "ENG1 - ON",
+                            "ENG2 - ON",
+                            "AUTOBRAKE - MAX",
+                            "TO Config - CALCULATED",
+                            "FLAPS - SET",
+                            "SPOILERS - ARM",
+                            "TCAS - TA/RA",
+                            "TCAS MODE - ON",
+                            "WXR/PWS - 1",
+                            "SELECTOR WX L&R - ALL WX",
+                            "Retire ground services",
+                            "APU master switch - OFF",
+                            "APU bleed - OFF",
+                            "Engine mode selector - NORM",
+                            "BEACON Lights - OFF",
+                            "Request pushback",
+                            "Strobe Lights - ON",
+                            "Wing Lights - ON (If night)",
+                            "Taxi Lights - ON"
+                        ]
+                    },
+                    {
+                        title: "2. TAXI",
+                        items: [
+                            "Taxi to runway"
+                        ]
+                    },
+                    {
+                        title: "3. PRE TAKE OFF",
+                        items: [
+                            "Request ATC take off clearance",
+                            "TO Lights - ON"
+                        ]
+                    },
+                    {
+                        title: "4. POST TAKE OFF",
+                        items: [
+                            "Gear - UP",
+                            "AP - ON",
+                            "VS - SET",
+                            "FLAPS - 0º",
+                            "Cruise speed - SET",
+                            "ATHR - ON",
+                            "TO Lights - OFF"
+                        ]
+                    },
+                    {
+                        title: "5. NAVIGATION",
+                        items: [
+                            "Fasten seatbelts - OFF",
+                            "Speed MACH - SET",
+                            "Continue navigation"
+                        ]
+                    },
+                    {
+                        title: "6. APPROACH",
+                        items: [
+                            "RAD NAV - CHECK",
+                            "Approach config - COMPLETED",
+                            "Fasten seatbelts - ON (at FL150 above landing)",
+                            "Reduce selected speed",
+                            "FLAPS - EXTENDED"
+                        ]
+                    },
+                    {
+                        title: "7. FINAL APPROACH",
+                        items: [
+                            "GEAR - DOWN",
+                            "Landing Lights - ON",
+                            "Landing speed - CHECK (IAS 150 - 130 kts)",
+                            "SPOILERS ARM - CHECK",
+                            "FLAPS 40º - CHECK"
+                        ]
+                    },
+                    {
+                        title: "8. TAXI TO GATE",
+                        items: [
+                            "Contact ground",
+                            "Landing Lights - OFF",
+                            "Taxi Lights - ON",
+                            "FLAPS - 0º",
+                            "SPOILERS - 0%"
+                        ]
+                    },
+                    {
+                        title: "9. SHUTDOWN",
+                        items: [
+                            "Taxi Lights - OFF",
+                            "GPU - CONECTED",
+                            "External power - ON",
+                            "Fasten seatbelts - OFF",
+                            "ENG1 / ENG2 - OFF",
+							"Strobe Lights - OFF",
+							"Wing Lights - OFF (If necessary)",
+                            "Selected altitude - 00100ft"
+                        ]
+                    },
+                    {
+                        title: "10. FULL SHUTDOWN (IF NECESSARY)",
+                        items: [
+                            "External power - OFF",
+                            "BAT1 / BAT2 - OFF"
+                        ]
+                    }
+                ]
+            },
+            c172: {
+                title: "Checklist Cessna 172",
+                sections: [
+                    {
+                        title: "1. BEFORE START",
+                        items: [
+                            "Fuel Quantity - Checked",
+                            "Weight & Balance - Checked",
+                            "Doors - Closed",
+                            "Pilot Briefing - Complete"
+                        ]
+                    },
+                    {
+                        title: "2. ENGINE START",
+                        items: [
+                            "Avionics - Off",
+                            "Fuel tank - Both",
+                            "Throttle - 10%",
+                            "Mixture - Full Lean (0%)",
+							"Park Brakes - Set",
+							"Standby battery - On, verify working",
+							"Master switches - On",
+							"Beacon Light - On",
+							"Mixture - Full Rich (100%)",
+							"Ignition - Start",
+							"After engine catches; Ignition - Both",
+							"Lights - As required",
+							"Mixture - Lean for ground ops (80%)"
+                        ]
+                    },
+					{
+                        title: "3. PRE-TAXI/TAXI",
+                        items: [
+                            "Avionics - On",
+                            "Flaps - Up",
+                            "ATIS - Obtain",
+                            "Brakes - Test",
+							"Taxi Clearance - Received (If active ATC)"
+                        ]
+                    },
+					{
+                        title: "4. RUN-UP",
+                        items: [
+                            "Brakes - Set",
+                            "Fuel tank - Both",
+                            "Trim - Set for takeoff",
+                            "Flight controls - free and correct",
+							"Mixture - Best power (100% for normal elevation airports)",
+							"Throttle - Increase to 1800 RPM",
+							"Ignition - Right. Check RPM drop is no more than 150",
+							"Ignition - Both",
+							"Ignition - Left. Check RPM drop is no more than 150",
+							"Ignition - Both",
+							"Engine instruments - Checked",
+							"Idle (575-625 RPM)",
+							"Check engine stable",
+							"Engine power - 10% (800+ RPM)"
+                        ]
+                    },
+					{
+                        title: "5. PRE-TAKEOFF",
+                        items: [
+                            "Flaps - 0-10",
+                            "Mixture - Best power",
+                            "Doors/Windows - Closed",
+                            "Landing Light - On",
+							"Strobe Light - As required",
+							"Abort plan - ready"
+                        ]
+                    },
+					{
+                        title: "6. TAKEOFF",
+                        items: [
+                            "Full throttle",
+                            "Rotate - 55 knots",
+                            "Climb speed - 72 knots",
+                            "Flaps - Up"
+                        ]
+                    },
+					{
+                        title: "7. CLIMB",
+                        items: [
+                            "70-85 knots",
+                            "Mixture - As req (100% for normal elevation airports)",
+                            "Displays - Checked"
+                        ]
+                    },
+					{
+                        title: "8. CRUISE",
+                        items: [
+                            "Mixture - Set for best fuel burn. 60-80%",
+                            "Power - 2200-2500 RPM"
+                        ]
+                    },
+					{
+                        title: "9. DESCENT",
+                        items: [
+                            "Mixture - Richen (100% for normal elevation airports)",
+                            "Fuel tank - Both",
+							"ATIS - Obtain"
+                        ]
+                    },
+					{
+                        title: "10. PRE-LANDING",
+                        items: [
+                            "Landing Light - On",
+                            "Autopilot - Off",
+							"Mixture - Best Power (100% for normal elevation airports)",
+							"Fuel tank - both",
+							"Flaps - as req"
+                        ]
+                    },
+					{
+                        title: "11. LANDING",
+                        items: [
+                            "Flaps - Full (Or as required)",
+                            "Approach speed - 65 knots",
+							"-----Go-Around-----",
+							"Power - Full",
+							"Positive Rate climb",
+							"Flaps - Retract slowly"
+                        ]
+                    },
+					{
+                        title: "12. AFTER LANDING",
+                        items: [
+                            "Flaps - Up",
+                            "Strobes - Off",
+							"Landing light - As required",
+							"Mixture - As required (Lean for ground ops)",
+							"Trim - takeoff"
+                        ]
+                    },
+					{
+                        title: "13. ENGINE SHUT DOWN",
+                        items: [
+                            "Park Brake - On",
+                            "Avionics - Off",
+							"Mixture - Full lean",
+							"Ignition - Off",
+							"Master Switches - Off",
+							"Standby battery - Off",
+							"Fuel Tank - Left or Right",
+							"Lights - Off"
+                        ]
+                    }
+                ]
+            }
+        };
+
+        let currentStepId = 1;
+
+        // Cargar la checklist del avión seleccionado
+        function renderChecklist(aircraftKey) {
+            const aircraft = checklistsData[aircraftKey];
+            const container = document.getElementById('checklist-content');
+            document.getElementById('checklist-title').innerText = aircraft.title;
+            
+            container.innerHTML = '';
+            currentStepId = 1;
+
+            aircraft.sections.forEach(section => {
+                // Crear el título de la sección
+                const secTitle = document.createElement('div');
+                secTitle.className = 'section-title';
+                secTitle.innerText = section.title;
+                container.appendChild(secTitle);
+
+                // Crear los items de la sección
+                section.items.forEach(itemText => {
+                    const stepId = `step-${currentStepId++}`;
+                    
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'checklist-item';
+
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = stepId;
+
+                    const label = document.createElement('label');
+                    label.htmlFor = stepId;
+                    label.innerText = itemText;
+
+                    itemDiv.appendChild(checkbox);
+                    itemDiv.appendChild(label);
+
+                    // Hacer que todo el contenedor ejecute el cambio del checkbox al hacer clic
+                    itemDiv.addEventListener('click', (e) => {
+                        if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'LABEL') {
+                            checkbox.checked = !checkbox.checked;
+                        }
+                    });
+
+                    container.appendChild(itemDiv);
+                });
+            });
+        }
+
+        function changeAircraft() {
+            const selector = document.getElementById('aircraftSelect');
+            renderChecklist(selector.value);
+        }
+
         function resetChecklist() {
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checkboxes = document.querySelectorAll('#checklist-content input[type="checkbox"]');
             checkboxes.forEach(cb => cb.checked = false);
         }
+
+        // Renderizado inicial
+        renderChecklist('a320');
     </script>
 </body>
 </html>
